@@ -1,11 +1,13 @@
-FROM golang:alpine
-RUN apk add --no-cache git mercurial \
-    && go get github.com/gorilla/sessions \
-    && apk del git mercurial
-RUN apk add bash
-ADD ./src /go/src/app
-COPY ./src/certs/server.key /go/src/app
-COPY ./src/certs/server.crt /go/src/app
+FROM golang:alpine AS build
+RUN apk --no-cache add gcc g++ make git
 WORKDIR /go/src/app
-ENV GOBIN /go/bin
-CMD ["go", "run", "server.go"]
+COPY . .
+RUN go get ./...
+RUN GOOS=linux go build -ldflags="-s -w" -o ./bin/server ./server.go
+
+FROM alpine:3.9
+RUN apk --no-cache add ca-certificates
+WORKDIR /usr/bin
+COPY --from=build /go/src/app/bin /go/bin
+EXPOSE 80
+ENTRYPOINT /go/bin/server --port 80

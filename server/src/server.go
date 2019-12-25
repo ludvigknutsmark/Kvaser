@@ -6,13 +6,10 @@ import (
 )
 
 func index(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("HTTPS bitcheees"))
+	w.Write([]byte("Do. Or do not. There is no try."))
 }
 
 func main() {
 	http.HandleFunc("/", index)
-	err := http.ListenAndServeTLS(":443", "server.crt", "server.key", nil)
-	if err != nil {
-		log.Fatal("ListenAndServe", err)
-	}
+	http.ListenAndServe(":80")
 }
