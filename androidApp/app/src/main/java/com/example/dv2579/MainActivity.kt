@@ -42,7 +42,11 @@ class MainActivity : AppCompatActivity() {
                 val request: Request = Request.Builder()
                     .url("https://$hostname")
                     .build()
-                client.newCall(request).execute()
+                while(true){
+                    client.newCall(request).execute()
+                    Thread.sleep(5000)
+                }
+
             }
             catch (e: Exception){
                 return """{"error": "SSL pinning failed"}"""
