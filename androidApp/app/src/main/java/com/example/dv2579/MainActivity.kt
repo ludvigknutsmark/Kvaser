@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity() {
         val innerTextView: TextView? = textView
 
         override fun doInBackground(vararg params: Unit?): String? {
-            val hostname = "google.se"
+            val hostname = "kvaser.xyz"
             try {
                 val certificatePinner = CertificatePinner.Builder()
-                    .add(hostname, "sha256/JBruFRoov64D6cb+fs3Qcp7UzWVHKOnr/WoApKUnwLk=")
+                    .add(hostname, "sha256/+zERkoqFM5BPm1nzxUO7ksOwIfAoixzis/h+hHkXEJM=")
                     .build()
                 val client: OkHttpClient = OkHttpClient.Builder()
                     .certificatePinner(certificatePinner)
