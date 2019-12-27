@@ -3,6 +3,7 @@ package com.example.dv2579
 
 import android.os.AsyncTask
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,7 +23,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        sslPinning(textView2).execute()
+
+
+        val btn = findViewById(R.id.button3) as Button
+        btn.setOnClickListener{
+            sslPinning(textView2).execute()
+        }
     }
 
     class sslPinning(textView: TextView) : AsyncTask<Unit, Unit, String>() {
@@ -42,11 +48,8 @@ class MainActivity : AppCompatActivity() {
                 val request: Request = Request.Builder()
                     .url("https://$hostname")
                     .build()
-                while(true){
-                    client.newCall(request).execute()
-                    Thread.sleep(5000)
-                }
 
+                client.newCall(request).execute()
             }
             catch (e: Exception){
                 return """{"error": "SSL pinning failed"}"""
