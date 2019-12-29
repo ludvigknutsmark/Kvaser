@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config>
+        <domain includeSubdomains="true">kvaser.xyz</domain>
+        <pin-set>
+            <pin digest="SHA-256">+zERkoqFM5BPm1nzxUO7ksOwIfAoixzis/h+hHkXEJM=</pin>
+        </pin-set>
+    </domain-config>
+</network-security-config>

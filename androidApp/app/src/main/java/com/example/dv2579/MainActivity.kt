@@ -7,14 +7,14 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
 import org.json.JSONObject
 import java.io.BufferedInputStream
 import java.io.BufferedReader
+import java.io.IOException
 import java.io.InputStreamReader
-import okhttp3.CertificatePinner
-import okhttp3.OkHttpClient
-import okhttp3.Request
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-
+        //sslPinning(textView2).execute()
         val btn = findViewById(R.id.button3) as Button
         btn.setOnClickListener{
             sslPinning(textView2).execute()
@@ -35,26 +35,19 @@ class MainActivity : AppCompatActivity() {
 
         val innerTextView: TextView? = textView
 
+
         override fun doInBackground(vararg params: Unit?): String? {
-            val hostname = "kvaser.xyz"
             try {
-                val certificatePinner = CertificatePinner.Builder()
-                    .add(hostname, "sha256/+zERkoqFM5BPm1nzxUO7ksOwIfAoixzis/h+hHkXEJM=")
+                val url: String = "https://kvaser.xyz"
+                val client = OkHttpClient()
+                val request = Request.Builder()
+                    .url(url)
                     .build()
-                val client: OkHttpClient = OkHttpClient.Builder()
-                    .certificatePinner(certificatePinner)
-                    .build()
-
-                val request: Request = Request.Builder()
-                    .url("https://$hostname")
-                    .build()
-
-                client.newCall(request).execute()
+                val response = client.newCall(request).execute()
+            } catch (e: IOException) {
+                return "Error"
             }
-            catch (e: Exception){
-                return """{"error": "SSL pinning failed"}"""
-            }
-            return """{"success": "SSL pinning done!"}"""
+            return "Connected to " + " kvaser.xyz"
 
         }
 
@@ -68,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
 
-            innerTextView?.text = JSONObject(result).toString()
+            innerTextView?.text = result
 
             /**
              * ... Work with the weather data
