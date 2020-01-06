@@ -10,7 +10,7 @@ Certificate unpinning is an attack in which the certificate pinning is bypassed 
 
 ## Prerequistes
 
-- Rootable Android device. Emulated or physical. Examples uses a emulated Pixel 2 with Android 7.0 (Nougat Google API image)
+- Rootable Android device. Emulated or physical. Examples uses a emulated Pixel 2 with Android 7.0 Nougat (x86 Google API image)
 
 - Android device with proxy settings 127.0.0.1:8080
 
