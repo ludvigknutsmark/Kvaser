@@ -49,7 +49,7 @@ def select_device():
         logging.info("More than one devices found.")
         for idx, val in enumerate(adb.devices()):
             print("\t",idx, val.serial)
-        device_idx = int(input("Select witch device to connect to: "))
+        device_idx = int(input("Select wich device to connect to: "))
     return adb.devices()[device_idx]
 
 def check_if_root(device):
