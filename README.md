@@ -1,6 +1,6 @@
 # Kvaser
 
-Automatic tool for Certificate-unpinning on Android applications. Complete with an example app.
+Automatic tool for Certificate unpinning on Android applications. Complete with an example app.
 
 ## What is Certificate-pinning?
 Certificate pinning or SSL-pinning is a technique applications uses to prevent MITM-attacks for HTTPS traffic between the application and server. Certificate pinning means that the servers certificate is "hardcoded" on the device in such a way that if the HTTPS certificate from the server does not match the hardcoded value the connection fails. 
