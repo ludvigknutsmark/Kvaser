@@ -12,14 +12,17 @@ Certificate unpinning is an attack in which the certificate pinning is bypassed 
 
 - Rootable Android device. Emulated or physical. Examples uses a emulated Pixel 2 with Android 7.0 Nougat (x86 Google API image)
 
-- Android device with proxy settings 127.0.0.1:8080
+- Android device with proxy settings pointing to Burp Suite proxy
 
-- Burp Suite proxy running on port 8080 
+- Running instance of Burp Suite
 
-## Running Kvaser (UPDATE WHEN OPTION FLAGS ARE DONE)
+## Running Kvaser
+Running with our example app.
+
+(Expecting Burp Suite on 127.0.0.1:8080)
 ```
 adb install app-release.apk
 pip3 install -r requirements.txt
-python3 kvaser.py
+python3 kvaser.py -g/--gadget com.example.dv2579
 ```
 Press connect on the example application and wait a few seconds for Burp suite to intercept the connection.
