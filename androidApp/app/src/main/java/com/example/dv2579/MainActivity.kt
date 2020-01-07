@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity() {
                     .url(url)
                     .build()
                 val response = client.newCall(request).execute()
-                val json = response.body!!.string()
-                return json
+                val responseText = response.body!!.string()
+                return responseText
             } catch (e: IOException) {
                 return "Error"
             }
