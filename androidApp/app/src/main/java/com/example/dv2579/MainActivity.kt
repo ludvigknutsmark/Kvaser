@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.Response
-import org.json.JSONObject
 import java.io.BufferedInputStream
 import java.io.BufferedReader
 import java.io.IOException
@@ -33,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     class sslPinning(textView: TextView) : AsyncTask<Unit, Unit, String>() {
 
-        val innerTextView: TextView? = textView
+        val TextView: TextView? = textView
 
 
         override fun doInBackground(vararg params: Unit?): String? {
@@ -44,28 +42,17 @@ class MainActivity : AppCompatActivity() {
                     .url(url)
                     .build()
                 val response = client.newCall(request).execute()
+                val responseText = response.body!!.string()
+                return responseText
             } catch (e: IOException) {
                 return "Error"
             }
-            return "Connected to " + " kvaser.xyz"
-
-        }
-
-        fun readStream(inputStream: BufferedInputStream): String {
-            val bufferedReader = BufferedReader(InputStreamReader(inputStream))
-            val stringBuilder = StringBuilder()
-            bufferedReader.forEachLine { stringBuilder.append(it) }
-            return stringBuilder.toString()
         }
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
 
-            innerTextView?.text = result
-
-            /**
-             * ... Work with the weather data
-             */
+            TextView?.text = result
 
         }
     }
