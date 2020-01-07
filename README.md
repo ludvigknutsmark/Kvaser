@@ -18,11 +18,9 @@ Certificate unpinning is an attack in which the certificate pinning is bypassed 
 
 ## Running Kvaser
 Running with our example app.
-
-(Expecting Burp Suite on 127.0.0.1:8080)
 ```
 adb install app-release.apk
 pip3 install -r requirements.txt
-python3 kvaser.py -g/--gadget com.example.dv2579
+python3 kvaser.py --gadget com.example.dv2579 --proxy 127.0.0.1:8080
 ```
-Press connect on the example application and wait a few seconds for Burp suite to intercept the connection.
+Press connect on the example application and wait a few seconds for Burp Suite to intercept the connection.
