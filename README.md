@@ -10,7 +10,11 @@ Certificate unpinning is an attack in which the certificate pinning is bypassed 
 
 ## Prerequistes
 
-- Rootable Android device. Emulated or physical. Examples uses a emulated Pixel 2 with Android 7.0 Nougat (x86 Google API image)
+- Rootable Android device. Emulated or physical. Testted on emulated Pixel 2 with Android 7.0 Nougat (x86 Google API image)
+
+- Adb tools (Ubuntu: sudo apt-get install android-tools-adb)
+
+- Frida framework (pip3 install frida-tools)
 
 - Android device with proxy settings pointing to Burp Suite proxy
 
