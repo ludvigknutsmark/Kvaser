@@ -9,14 +9,22 @@ import lzma
 import urllib.request
 import time
 import sys
+import argparse
 
-PROXY_ADDRESS = "127.0.0.1"
-PROXY_PORT = "8080"
+parser = argparse.ArgumentParser(description='Certificate unpinning tool for Android')
+optional = parser._action_groups.pop()
+required = parser.add_argument_group('required arguments')
+optional.add_argument('-p', '--proxy', type=str, default='127.0.0.1:8080', help='Proxy address. Default is 127.0.0.1:8080')
+required.add_argument('-g', '--gadget', type=str, required=True, help='Name of the installed gadget')
+parser._action_groups.append(optional)
+args = parser.parse_args()
+
+PROXY_ADDRESS = args.proxy
+PROCESS_NAME = args.gadget
 PATH = os.path.split(os.path.abspath(__file__))[0]
-PROCESS_NAME = "com.example.dv2579"
 
 def main():
-    download_cert(f"http://{PROXY_ADDRESS}:{PROXY_PORT}/cert")
+    download_cert(f"http://{PROXY_ADDRESS}/cert")
     device = select_device()
     check_if_root(device)
     install_frida(device)
@@ -31,9 +39,9 @@ def main():
 def download_cert(url):
     try:
         subprocess.check_output(f"wget {url} -O ./tmp/cert-der.crt", shell=True)
-        logging.info(f"Burpsuite found on http://{PROXY_ADDRESS}:{PROXY_PORT}/cert. Downloading certificate to {PATH}/tmp/cert-der.crt")
+        logging.info(f"Burpsuite found on http://{PROXY_ADDRESS}/cert. Downloading certificate to {PATH}/tmp/cert-der.crt")
     except:
-        logging.critical(f"Burpsuite could not be found on http://{PROXY_ADDRESS}:{PROXY_PORT}/cert. Exiting...")
+        logging.critical(f"Burpsuite could not be found on http://{PROXY_ADDRESS}/cert. Exiting...")
         clean()
     try:
         subprocess.check_output(f"adb push ./tmp/cert-der.crt /data/local/tmp/cert-der.crt", shell=True)
