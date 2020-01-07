@@ -14,8 +14,6 @@ Certificate unpinning is an attack in which the certificate pinning is bypassed 
 
 - Adb tools (Ubuntu: sudo apt-get install android-tools-adb)
 
-- Frida framework (pip3 install frida-tools)
-
 - Android device with proxy settings pointing to Burp Suite proxy
 
 - Running instance of Burp Suite
