@@ -39,7 +39,7 @@ def download_cert(url):
         subprocess.check_output(f"adb push ./tmp/cert-der.crt /data/local/tmp/cert-der.crt", shell=True)
         logging.info("Certificate pushed to device")
     except:
-        logging.critical("Could not push certificate to devide. Exiting...")
+        logging.critical("Could not push certificate to device. Exiting...")
         clean()
     
 
