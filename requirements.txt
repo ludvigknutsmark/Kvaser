@@ -10,7 +10,7 @@ frida==12.8.5
 idna==2.8
 packaging==20.0
 pathlib==1.0.1
-py==1.8.1
+py==1.10.0
 pyelftools==0.26
 pyparsing==2.4.6
 requests==2.22.0
