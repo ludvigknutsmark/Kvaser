@@ -16,6 +16,6 @@ pyparsing==2.4.6
 requests==2.22.0
 retry==0.9.2
 six==1.13.0
-urllib3==1.25.7
+urllib3==1.25.8
 whichcraft==0.6.1
 xmltodict==0.12.0
